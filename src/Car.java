@@ -80,6 +80,16 @@ public abstract class Car implements Movable{
         }
     }
 
+    @Override
+    public Point2D.Double getPosition() {
+        return (Point2D.Double) position.clone();
+    }
+
+    @Override
+    public double getDirection(){
+        return direction;
+    }
+
     // TODO fix this method according to lab pm
     public void gas(double amount){
         incrementSpeed(amount);
