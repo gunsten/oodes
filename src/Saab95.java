@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * A car of the Volvo240 model
  */
-public class Saab95 extends Car{
+public class Saab95 extends PrivateCar{
 
     private boolean turboOn;
 

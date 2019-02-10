@@ -3,7 +3,7 @@ import java.awt.*;
 /**
  * A car of the Volvo240 model
  */
-public class Volvo240 extends Car{
+public class Volvo240 extends PrivateCar{
 
     /**
      * The trim factor of the Volvo240, effecting the speed change of the car
