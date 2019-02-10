@@ -2,7 +2,7 @@ import java.awt.*;
 
 public class Scania extends Truck{
 
-    public static final int DUMPERMAXANGLE = 70, DUMPERMINANGLE = 0;
+    public static final int DUMPERMAXANGLE = 70, DUMPERMINANGLE = 0, DUMPERANGLECHANGE = 10;
 
 
 
@@ -14,6 +14,11 @@ public class Scania extends Truck{
         return getEnginePower() * 0.01;
     }
 
+
+    @Override
+    public int getPlatformAngleChange() {
+        return DUMPERANGLECHANGE;
+    }
 
     @Override
     public int getPlatformMaxAngle() {

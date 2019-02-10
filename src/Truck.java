@@ -2,7 +2,6 @@ import java.awt.*;
 
 public abstract class Truck extends Car {
 
-    public static final int PLATFORMANGLECHANGE = 10;
     private int platformangle;
 
 
@@ -22,16 +21,18 @@ public abstract class Truck extends Car {
     public void raisePlatform() {
         if (getCurrentSpeed() != 0)
             throw new PlatformException("Cannot raise dumper when the car is moving");
-        platformangle = Math.min(getPlatformMaxAngle(), platformangle + PLATFORMANGLECHANGE);
+        platformangle = Math.min(getPlatformMaxAngle(), platformangle + getPlatformAngleChange());
     }
 
     public void lowerPlatform() {
-        platformangle = Math.max(getPlatformMinAngle(), platformangle - PLATFORMANGLECHANGE);
+        platformangle = Math.max(getPlatformMinAngle(), platformangle - getPlatformAngleChange());
     }
 
     public int getPlatformAngle() {
         return platformangle;
     }
+
+    public abstract int getPlatformAngleChange();
 
     public abstract int getPlatformMaxAngle();
 
