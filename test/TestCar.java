@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.geom.Point2D;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestCar {
 
@@ -25,5 +26,90 @@ public class TestCar {
         assertEquals(0, saab.getDirection());
         assertEquals(new Point2D.Double(0,0), volvo.getPosition());
         assertEquals(new Point2D.Double(0,0), saab.getPosition());
+    }
+
+    @Test
+    public void testSetters() {
+        Car volvo = new Volvo240();
+        volvo.setColor(Color.white);
+        assertEquals(Color.white, volvo.getColor());
+    }
+
+    @Test
+    public void testMoveStationary() {
+        Car volvo = new Volvo240();
+
+        //Zero speed
+        Point2D.Double initial = volvo.getPosition();
+        volvo.move();
+        assertEquals(initial, volvo.getPosition());
+    }
+
+    @Test
+    public void testMoveHorizontal() {
+        Saab95 saab = new Saab95();
+
+        Point2D.Double initial = saab.getPosition();
+        saab.startEngine();
+        saab.setTurboOn();
+        saab.gas(1);
+        saab.setTurboOff();
+        saab.gas(1);
+        double speed = saab.getCurrentSpeed();
+        saab.move();
+        saab.move();
+        saab.move();
+        assertEquals(initial.x  + 3 * speed, saab.getPosition().x);
+    }
+
+    @Test
+    public void testMove() {
+        Volvo240 volvo = new Volvo240();
+
+        Point2D.Double initial = volvo.getPosition();
+
+        volvo.gas(1);
+        double speed = volvo.getCurrentSpeed();
+
+        volvo.turnLeft();volvo.turnLeft();volvo.turnRight();
+        double dir = volvo.getDirection();
+
+        volvo.move();
+
+        assertEquals(initial.x + speed * Math.cos(dir), volvo.getPosition().x);
+        assertEquals(initial.y + speed * Math.sin(dir), volvo.getPosition().y);
+
+        //Test brake
+
+        volvo.brake(1);volvo.brake(1);volvo.brake(1);
+
+        assertEquals(0, volvo.getCurrentSpeed());
+    }
+
+    @Test
+    public void testTurnRight() {
+        Car saab = new Saab95();
+        for(int i=0;i<100;i++) {
+            saab.turnRight();
+            assertTrue(saab.getDirection() >= 0 && saab.getDirection() <= 2*Math.PI);
+        }
+    }
+
+    @Test
+    public void testBrakeGasException() {
+        boolean except1 = false;
+        boolean except2 = false;
+        try {
+            new Saab95().gas(10534645);
+        } catch (IllegalArgumentException e) {
+            except1 = true;
+        }
+        try {
+            new Volvo240().brake(-20);
+        } catch (IllegalArgumentException e) {
+            except2 = true;
+        }
+        assertTrue(except1);
+        assertTrue(except2);
     }
 }
