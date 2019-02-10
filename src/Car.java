@@ -50,13 +50,15 @@ public abstract class Car implements Movable{
         currentSpeed = 0;
     }
 
-    protected void setSpeed(double speed) {
-        currentSpeed = speed;
+    protected abstract double speedFactor();
+
+    public void incrementSpeed(double amount){
+        currentSpeed = Math.min(currentSpeed + amount * speedFactor(), enginePower);
     }
 
-    public abstract void incrementSpeed(double amount);
-
-    public abstract void decrementSpeed(double amount);
+    public void decrementSpeed(double amount){
+        currentSpeed = Math.max(currentSpeed - amount * speedFactor(),0);
+    }
 
     @Override
     public void move() {
@@ -90,13 +92,15 @@ public abstract class Car implements Movable{
         return direction;
     }
 
-    // TODO fix this method according to lab pm
-    public void gas(double amount){
+    public void gas(double amount) throws IllegalArgumentException {
+        if(amount < 0 || amount > 1)
+            throw new IllegalArgumentException("gas amount must be in the range [0,1]");
         incrementSpeed(amount);
     }
 
-    // TODO fix this method according to lab pm
-    public void brake(double amount){
+    public void brake(double amount) throws IllegalArgumentException {
+        if (amount < 0 || amount > 1)
+            throw new IllegalArgumentException("brake amount must be in the range [0,1]");
         decrementSpeed(amount);
     }
 }
