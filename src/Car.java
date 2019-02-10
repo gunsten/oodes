@@ -8,7 +8,7 @@ public abstract class Car implements Movable{
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
-    private String modelName; // The car model name
+    public final String modelName; // The car model name
 
     private Point2D.Double position;
     private double direction;
@@ -18,6 +18,7 @@ public abstract class Car implements Movable{
         this.enginePower = enginePower;
         this.currentSpeed = 0;
         this.color = color;
+        this.modelName = modelName;
         position = new Point2D.Double(0,0);
         direction = 0;
         stopEngine();
