@@ -64,6 +64,7 @@ public abstract class Car implements Movable{
     public void move() {
         double newx = position.x + currentSpeed * Math.cos(direction);
         double newy = position.y + currentSpeed * Math.sin(direction);
+        position = new Point2D.Double(newx, newy);
     }
 
     @Override
