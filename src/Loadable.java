@@ -1,5 +1,7 @@
-public interface Loadable {
-    public void loadCar(Car car);
+import java.awt.geom.Point2D;
 
-    public Car unloadCar();
+public interface Loadable <T extends Car> {
+    public void loadCar(T car);
+    public Point2D.Double getPosition();
+    public T unloadCar();
 }

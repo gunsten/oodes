@@ -13,7 +13,7 @@ public abstract class Car implements Movable{
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
-    private Transport transport = null;
+    private Loadable container = null;
     /**
      * Car model name, set at object construction
      */
@@ -143,8 +143,8 @@ public abstract class Car implements Movable{
      */
     @Override
     public Point2D.Double getPosition() {
-        if(transport != null) {
-            return transport.getPosition();
+        if(container != null) {
+            return container.getPosition();
         }
         else {
             return (Point2D.Double) position.clone();
@@ -157,8 +157,8 @@ public abstract class Car implements Movable{
      */
     @Override
     public double getDirection(){
-        if(transport != null)
-            return transport.getDirection();
+        if(container != null && container instanceof Movable)
+            return ((Movable) container).getDirection();
         else
             return direction;
     }
@@ -172,7 +172,7 @@ public abstract class Car implements Movable{
     public void gas(double amount) throws IllegalArgumentException {
         if(amount < 0 || amount > 1)
             throw new IllegalArgumentException("gas amount must be in the range [0,1]");
-        if(transport != null)
+        if(container != null)
             throw new LoadException("Cannot increase speed of loaded car");
         incrementSpeed(amount);
     }
@@ -195,12 +195,12 @@ public abstract class Car implements Movable{
     protected void load(Transport transport) {
         if (isLoaded())
             throw new LoadException("The car is already loaded");
-        this.transport = transport;
+        this.container = transport;
         stopEngine();
     }
 
     /**
-     * Should be called when this car is unloaded. Set direction and position in relation to transport
+     * Should be called when this car is unloaded. Set direction and position in relation to container
      */
     protected void unload() {
         if (!isLoaded())
@@ -208,14 +208,14 @@ public abstract class Car implements Movable{
         direction = getDirection();
         this.position = new Point2D.Double(getPosition().x - Math.cos(direction),
                 getPosition().y - Math.sin(direction) );
-        transport = null;
+        container = null;
     }
 
     /**
      * @return True if the car is loaded
      */
     public boolean isLoaded() {
-        return transport != null;
+        return container != null;
     }
 
     /**

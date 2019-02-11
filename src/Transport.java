@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.util.Stack;
 
-public class Transport extends Truck implements Loadable {
+public class Transport extends Truck implements Loadable<PrivateCar> {
     private Stack<PrivateCar> cars;
     private int max;
     public static final double LOADDISTANCE = 1;
@@ -15,9 +15,7 @@ public class Transport extends Truck implements Loadable {
     }
 
     @Override
-    public void loadCar(Car car) {
-        if (!(car instanceof PrivateCar))
-            throw new LoadException("Transport can only load smaller cars");
+    public void loadCar(PrivateCar car) {
         if (getPlatformAngle() == getPlatformClosedAngle())
             throw new LoadException("Cannot load a car unto the transport when the ramp is up");
         if (cars.size() >= max)
