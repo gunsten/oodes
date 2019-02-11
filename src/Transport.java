@@ -30,7 +30,7 @@ public class Transport extends Truck implements Loadable {
 
     @Override
     public PrivateCar unloadCar() {
-        if (getPlatformAngle() != getPlatformAngle())
+        if (getPlatformAngle() != getPlatformClosedAngle())
             throw new LoadException("Cannot unload a car unto the transport when the ramp is up");
         if (cars.empty())
             throw new LoadException("The transport is empty");
