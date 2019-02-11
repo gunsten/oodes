@@ -8,8 +8,8 @@ public class Transport extends Truck implements Loadable {
 
     public Transport(int max) {
         super(2, 100, Color.red, "Transport");
-        if(max < 0)
-            throw new IllegalArgumentException("Car capacity of Transport cannot be negative");
+        if(max <= 0)
+            throw new IllegalArgumentException("Car capacity of Transport must be positive");
         this.max = max;
         cars = new Stack<>();
     }
