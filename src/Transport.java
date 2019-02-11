@@ -20,7 +20,7 @@ public class Transport extends Truck implements Loadable<PrivateCar> {
             throw new LoadException("Cannot load a car unto the transport when the ramp is up");
         if (cars.size() >= max)
             throw new LoadException("The transport is full");
-        if (car.distance(this) > LOADDISTANCE)
+        if (Locateable.distance(car, this) > LOADDISTANCE)
             throw new LoadException("The car is too far away");
         car.load(this);
         cars.push((PrivateCar) car);

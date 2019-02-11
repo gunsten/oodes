@@ -61,7 +61,7 @@ public class TestTransport {
         tp.lowerPlatform();
         tp.unloadCar();
 
-        assertTrue(tp.distance(volvo) == 1d);
+        assertTrue(Locateable.distance(tp, volvo) == 1d);
         assertEquals(false, volvo.isLoaded());
 
         Saab95 saab = new Saab95();

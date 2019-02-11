@@ -192,7 +192,7 @@ public abstract class Car implements Movable{
      * Should be called when this car is loaded
      * @param transport
      */
-    protected void load(Transport transport) {
+    protected void load(Loadable transport) {
         if (isLoaded())
             throw new LoadException("The car is already loaded");
         this.container = transport;
@@ -216,16 +216,5 @@ public abstract class Car implements Movable{
      */
     public boolean isLoaded() {
         return container != null;
-    }
-
-    /**
-     * Returns the distance between this car and the other
-     * @param car
-     * @return
-     */
-    public double distance (Car car) {
-        double xdist = car.getPosition().x - getPosition().x;
-        double ydist = car.getPosition().y - getPosition().y;
-        return Math.sqrt(xdist*xdist + ydist*ydist);
     }
 }
