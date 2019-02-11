@@ -1,5 +1,8 @@
 import java.awt.*;
 
+/**
+ * Super class of cars concidered as private cars
+ */
 public abstract class PrivateCar extends Car {
     /**
      * Creates a small car object

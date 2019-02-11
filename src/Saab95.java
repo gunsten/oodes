@@ -30,7 +30,7 @@ public class Saab95 extends PrivateCar{
     }
 
     /**
-     * @return the calculated speed factor of this specific car model
+     * @return the calculated speed factor of the Saab95
      */
     protected double speedFactor(){
         double turbo = 1;

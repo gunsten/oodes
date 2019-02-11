@@ -1,11 +1,21 @@
 import java.awt.*;
 import java.util.Stack;
 
+/**
+ * A transport for carrying private cars
+ */
 public class Transport extends Truck implements Loadable<PrivateCar> {
     private Stack<PrivateCar> cars;
     private int max;
+    /**
+     * Max distance at which a car can be loaded unto the transport
+     */
     public static final double LOADDISTANCE = 1;
 
+    /**
+     * Creates a Transport object
+     * @param max maximum carrying capacity, number of cars
+     */
     public Transport(int max) {
         super(2, 100, Color.red, "Transport");
         if(max <= 0)
@@ -14,6 +24,10 @@ public class Transport extends Truck implements Loadable<PrivateCar> {
         cars = new Stack<>();
     }
 
+    /**
+     * Loads a car unto the transport
+     * @param car the car to be loaded
+     */
     @Override
     public void loadCar(PrivateCar car) {
         if (getPlatformAngle() == getPlatformClosedAngle())
@@ -26,6 +40,10 @@ public class Transport extends Truck implements Loadable<PrivateCar> {
         cars.push(car);
     }
 
+    /**
+     * Unloads the car that was last to be loaded
+     * @return the car that was last to be loaded
+     */
     @Override
     public PrivateCar unloadCar() {
         if (getPlatformAngle() == getPlatformClosedAngle())
@@ -36,11 +54,19 @@ public class Transport extends Truck implements Loadable<PrivateCar> {
         car.unload();
         return car;
     }
+
+    /**
+     * @return the angle change at each raising and lowering of the ramp. The ramp can only be opened or closed.
+     */
     @Override
     public int getPlatformAngleChange() {
         return 90;
     }
 
+    /**
+     *
+     * @return
+     */
     @Override
     public int getPlatformMaxAngle() {
         return 90;

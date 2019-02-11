@@ -18,7 +18,7 @@ public class Volvo240 extends PrivateCar{
     }
 
     /**
-     * @return the calculated speed factor of this specific car model
+     * @return the calculated speed factor of the Volvo240
      */
     protected double speedFactor(){
         return getEnginePower() * 0.01 * trimFactor;
