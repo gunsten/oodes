@@ -37,6 +37,19 @@ public class TestTransport {
         tp.loadCar(volvo);
         tp.raisePlatform();
 
+        //Test that loaded car cannot be loaded again
+        boolean except11 = false;
+        Transport tp2 = new Transport(2);
+        tp2.lowerPlatform();
+        try {
+            tp2.loadCar(volvo);
+        } catch(LoadException e) {
+            if (e.getMessage().contains("already loaded"))
+                except11 = true;
+        }
+
+        assertTrue(except11);
+
         tp.gas(1);
         for(int i=0;i<20;i++) {
             tp.turnRight();
@@ -44,6 +57,16 @@ public class TestTransport {
             assertEquals(tp.getDirection(), volvo.getDirection());
             assertEquals(tp.getPosition(), volvo.getPosition());
         }
+
+        //Test that loaded car cannot gas
+        boolean except21 = false;
+
+        try {
+            volvo.gas(1);
+        } catch (LoadException e) {
+            except21 = true;
+        }
+        assertTrue(except21);
 
         tp.stopEngine();
 
