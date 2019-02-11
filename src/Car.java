@@ -210,4 +210,15 @@ public abstract class Car implements Movable{
                 getPosition().y - Math.sin(direction) );
         transport = null;
     }
+
+    /**
+     * Returns the distance between this car and the other
+     * @param car
+     * @return
+     */
+    public double distance (Car car) {
+        double xdist = car.getPosition().x - getPosition().x;
+        double ydist = car.getPosition().y - getPosition().y;
+        return Math.sqrt(xdist*xdist + ydist*ydist);
+    }
 }
