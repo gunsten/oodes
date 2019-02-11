@@ -13,6 +13,7 @@ public abstract class Car implements Movable{
     private double enginePower; // Engine power of the car
     private double currentSpeed; // The current speed of the car
     private Color color; // Color of the car
+    private Transport transport = null;
     /**
      * Car model name, set at object construction
      */
@@ -142,7 +143,12 @@ public abstract class Car implements Movable{
      */
     @Override
     public Point2D.Double getPosition() {
-        return (Point2D.Double) position.clone();
+        if(transport != null) {
+            return transport.getPosition();
+        }
+        else {
+            return (Point2D.Double) position.clone();
+        }
     }
 
     /**
@@ -151,17 +157,23 @@ public abstract class Car implements Movable{
      */
     @Override
     public double getDirection(){
-        return direction;
+        if(transport != null)
+            return transport.getDirection();
+        else
+            return direction;
     }
 
     /**
      * Accelerates the car. Takes arguments in the range [0,1]
      * @param amount
      * @throws IllegalArgumentException if the argument is outside of the allowed range
+     * @throws LoadException if the car is loaded, it can't gas
      */
     public void gas(double amount) throws IllegalArgumentException {
         if(amount < 0 || amount > 1)
             throw new IllegalArgumentException("gas amount must be in the range [0,1]");
+        if(transport != null)
+            throw new LoadException("Cannot increase speed of loaded car");
         incrementSpeed(amount);
     }
 
@@ -174,5 +186,28 @@ public abstract class Car implements Movable{
         if (amount < 0 || amount > 1)
             throw new IllegalArgumentException("brake amount must be in the range [0,1]");
         decrementSpeed(amount);
+    }
+
+    /**
+     * Should be called when this car is loaded
+     * @param transport
+     */
+    protected void load(Transport transport) {
+        if (transport != null)
+            throw new LoadException("The car is already loaded");
+        this.transport = transport;
+        stopEngine();
+    }
+
+    /**
+     * Should be called when this car is unloaded. Set direction and position in relation to transport
+     */
+    protected void unload() {
+        if (transport == null)
+            throw new LoadException("The car is not loaded");
+        direction = getDirection();
+        this.position = new Point2D.Double(getPosition().x - Math.cos(direction),
+                getPosition().y - Math.sin(direction) );
+        transport = null;
     }
 }
