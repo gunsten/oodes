@@ -6,8 +6,8 @@ public class Transport extends Truck implements Loadable {
     private int max;
     public static final double LOADDISTANCE = 1;
 
-    public Transport(int nrDoors, double enginePower, Color color, String modelName, int max) {
-        super(nrDoors, enginePower, color, modelName);
+    public Transport(int max) {
+        super(2, 100, Color.red, "Transport");
         if(max < 0)
             throw new IllegalArgumentException("Car capacity of Transport cannot be negative");
         this.max = max;
@@ -15,9 +15,9 @@ public class Transport extends Truck implements Loadable {
     }
 
     @Override
-    public void load(Car car) {
+    public void loadCar(Car car) {
         if (!(car instanceof PrivateCar))
-            throw new IllegalArgumentException("Transport can only load smaller cars");
+            throw new LoadException("Transport can only load smaller cars");
         if (getPlatformAngle() == getPlatformClosedAngle())
             throw new LoadException("Cannot load a car unto the transport when the ramp is up");
         if (cars.size() >= max)

@@ -1,5 +1,5 @@
 public interface Loadable {
-    public void load(Car car);
+    public void loadCar(Car car);
 
     public Car unloadCar();
 }

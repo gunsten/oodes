@@ -193,7 +193,7 @@ public abstract class Car implements Movable{
      * @param transport
      */
     protected void load(Transport transport) {
-        if (transport != null)
+        if (isLoaded())
             throw new LoadException("The car is already loaded");
         this.transport = transport;
         stopEngine();
@@ -203,12 +203,19 @@ public abstract class Car implements Movable{
      * Should be called when this car is unloaded. Set direction and position in relation to transport
      */
     protected void unload() {
-        if (transport == null)
+        if (!isLoaded())
             throw new LoadException("The car is not loaded");
         direction = getDirection();
         this.position = new Point2D.Double(getPosition().x - Math.cos(direction),
                 getPosition().y - Math.sin(direction) );
         transport = null;
+    }
+
+    /**
+     * @return True if the car is loaded
+     */
+    public boolean isLoaded() {
+        return transport != null;
     }
 
     /**
