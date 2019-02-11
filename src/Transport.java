@@ -23,7 +23,7 @@ public class Transport extends Truck implements Loadable<PrivateCar> {
         if (Locateable.distance(car, this) > LOADDISTANCE)
             throw new LoadException("The car is too far away");
         car.load(this);
-        cars.push((PrivateCar) car);
+        cars.push(car);
     }
 
     @Override
