@@ -138,6 +138,17 @@ public abstract class Car implements Movable{
     }
 
     /**
+     * Changes direction of the car 180 degrees
+     */
+    @Override
+    public void uTurn() {
+        direction += Math.toRadians(180);
+        if(direction > 2*Math.PI) {
+            direction -= 2*Math.PI;
+        }
+    }
+
+    /**
      * Returns (a copy) of the cars position
      * @return car position
      */
@@ -149,6 +160,16 @@ public abstract class Car implements Movable{
         else {
             return (Point2D.Double) position.clone();
         }
+    }
+
+    //TODO
+    protected void setPosition(Point2D.Double position) {
+        this.position = (Point2D.Double) position.clone();
+    }
+
+    //TODO
+    protected void setDirection(double direction) {
+        this.direction = direction;
     }
 
     /**

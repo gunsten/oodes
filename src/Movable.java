@@ -18,6 +18,11 @@ public interface Movable extends Locateable{
     public void turnRight();
 
     /**
+     * Changes direction of the object 180 degrees
+     */
+    public void uTurn();
+
+    /**
      * Returns the direction of the object in radians
      * @return direction in radians
      */
