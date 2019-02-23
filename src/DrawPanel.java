@@ -12,16 +12,15 @@ import javax.swing.*;
 
 public class DrawPanel extends JPanel{
 
-    // Just a single image, TODO: Generalize
+    // Images associated with each car modelled
     Map<Car, BufferedImage> carImages;
     BufferedImage volvoImage, saabImage, scaniaImage;
-    // To keep track of a singel cars position
+    // Points associated with each car modelled
     Map<Car, Point> carPoints;
-    Point volvoPoint = new Point();
 
+    //All modelled cars
     List<Car> cars;
 
-    // TODO: Make this genereal for all cars
     void moveit(Car car, int x, int y){
         carPoints.get(car).x = x;
         carPoints.get(car).y = y;
