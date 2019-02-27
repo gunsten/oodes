@@ -79,6 +79,6 @@ public class Model implements IModel, ReadableModel<Car> {
 
     @Override
     public List<Car> get() {
-        return cars;
+        return (List<Car>) cars;
     }
 }

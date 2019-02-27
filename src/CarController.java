@@ -9,7 +9,7 @@ import java.awt.event.ActionListener;
 * modifying the model state and the updating the view.
  */
 
-public class CarController {
+public class CarController implements ICarController{
     // member fields:
 
     // The delay (ms) corresponds to 20 updates a sec (hz)
@@ -28,7 +28,7 @@ public class CarController {
     //methods:
 
 
-    public void turbo(boolean on) {
+    public void turbos(boolean on) {
         if (on) {
             model.turbosOn();
         } else {
@@ -36,11 +36,11 @@ public class CarController {
         }
     }
 
-    public void liftBed() {
+    public void liftBeds() {
         model.liftBeds();
     }
 
-    public void lowerBed() {
+    public void lowerBeds() {
         model.lowerBeds();
     }
 
@@ -50,6 +50,11 @@ public class CarController {
 
     public void stopCars() {
         model.stopCars();
+    }
+
+    @Override
+    public void startSimulation() {
+        timer.start();
     }
 
     /* Each step the TimerListener moves all the cars in the list and tells the
@@ -63,7 +68,7 @@ public class CarController {
     }
 
     // Calls the gas method for each car once
-    void gas(int amount) {
+    public void gas(int amount) {
         model.gas(amount);
     }
 
