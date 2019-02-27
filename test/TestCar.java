@@ -1,3 +1,6 @@
+import model.Car;
+import model.Saab95;
+import model.Volvo240;
 import org.junit.jupiter.api.Test;
 
 import java.awt.*;
@@ -18,8 +21,8 @@ public class TestCar {
         assertEquals(2, saab.getNrDoors());
         assertEquals(100, volvo.getEnginePower());
         assertEquals(125, saab.getEnginePower());
-        assertEquals("Volvo240", volvo.modelName);
-        assertEquals("Saab95", saab.modelName);
+        assertEquals("model.Volvo240", volvo.modelName);
+        assertEquals("model.Saab95", saab.modelName);
         assertEquals(0, volvo.getCurrentSpeed());
         assertEquals(0, saab.getCurrentSpeed());
         assertEquals(0, volvo.getDirection());

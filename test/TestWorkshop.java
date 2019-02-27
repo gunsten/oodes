@@ -1,3 +1,6 @@
+import model.LoadException;
+import model.Volvo240;
+import model.Workshop;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,7 +16,7 @@ public class TestWorkshop {
         wsvolvo.loadCar(v1);
         wsvolvo.loadCar(v2);
 
-        //wsvolvo.loadCar(new Saab95());
+        //wsvolvo.loadCar(new model.Saab95());
 
         assertTrue(wsvolvo.unloadCar() instanceof Volvo240);
         assertTrue(wsvolvo.unloadCar() instanceof Volvo240);

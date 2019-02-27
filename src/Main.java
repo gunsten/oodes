@@ -1,9 +1,12 @@
+import controller.CarController;
+import model.*;
+import view.CarView;
+import view.DrawPanel;
+
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -11,12 +14,12 @@ public class Main {
     public static void main(String[] args) {
         BufferedImage volvoImage = null, saabImage = null, scaniaImage = null;
         // Instance of this class
-        //ICarController cc = new CarController();
+        //controller.ICarController cc = new controller.CarController();
 
         try {
             // You can remove the "pics" part if running outside of IntelliJ and
             // everything is in the same main folder.
-            // volvoImage = ImageIO.read(new File("Volvo240.jpg"));
+            // volvoImage = ImageIO.read(new File("model.Volvo240.jpg"));
 
             // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
             // if you are starting in IntelliJ.

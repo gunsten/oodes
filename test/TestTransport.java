@@ -1,3 +1,4 @@
+import model.*;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -25,7 +26,7 @@ public class TestTransport {
 
         /*try {
             tp.loadCar(tp);
-        } catch (LoadException e) {
+        } catch (model.LoadException e) {
             if (e.getMessage().contains("load smaller cars"))
                 except2 = true;
         }*/
