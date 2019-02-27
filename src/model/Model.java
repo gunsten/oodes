@@ -81,6 +81,6 @@ public class Model implements IModel, ReadableModel<Car> {
 
     @Override
     public List<Car> get() {
-        return (List<Car>) cars;
+        return cars;
     }
 }

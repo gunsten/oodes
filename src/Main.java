@@ -32,7 +32,7 @@ public class Main {
         }
 
         ArrayList<Car> cars = new ArrayList<>();
-        HashMap<Car, BufferedImage> imgMap = new HashMap<>();
+        HashMap<Locateable, BufferedImage> imgMap = new HashMap<>();
 
         Car volvo = new Volvo240();
         cars.add(volvo);
