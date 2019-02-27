@@ -1,0 +1,10 @@
+State - Engine, Platform
+Observer - Engine lyssnar på platform och vice versa
+Factory - Volvo/saab-konstruktorer funkar typ som factory methods
+        - Kan också användas för att förenkla initialisering av M-V-C-komponenterna (det som nu görs i main)
+Composite - "bilkaravan"
+          - biltransport, lastade bilar
+          
+Uppgift 6 utöka
+Factory pattern för att skapa nya bilar,
+bör kanske ligga i Model.s
