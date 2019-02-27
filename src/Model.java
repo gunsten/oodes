@@ -11,7 +11,7 @@ public class Model implements IModel, ReadableModel<Car> {
     public void update() {
         for (Car car : cars) {
             car.move();
-            if(car.getPosition().x < 0 || car.getPosition().x > width) {
+            if(car.getPosition().x < 0 || car.getPosition().x > width - 100) {
                 car.uTurn();
             }
         }
