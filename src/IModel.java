@@ -1,7 +1,7 @@
 public interface IModel {
     void update();
-    void gas();
-    void brake();
+    void gas(int amount);
+    void brake(int amount);
     void startCars();
     void stopCars();
     void liftBeds();
