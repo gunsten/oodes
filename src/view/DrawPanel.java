@@ -14,12 +14,12 @@ import javax.swing.*;
 public class DrawPanel extends JPanel{
 
     // Images associated with each car modelled
-    Map<Car, BufferedImage> carImages;
+    Map<? extends Locateable, BufferedImage> carImages;
 
-    ReadableModel<Car> model;
+    ReadableModel<? extends Locateable> model;
 
     // Initializes the panel and reads the images
-    public DrawPanel(ReadableModel<Car> model, Map<Car, BufferedImage> carImages, int x, int y) {
+    public DrawPanel(ReadableModel<? extends Locateable> model, Map<? extends Locateable, BufferedImage> carImages, int x, int y) {
         this.carImages = carImages;
         this.model = model;
 
