@@ -1,4 +1,4 @@
-State - Engine, Platform
+State - Engine, Platform, Loaded
 Observer - Engine lyssnar på platform och vice versa
 Factory - Volvo/saab-konstruktorer funkar typ som factory methods
         - Kan också användas för att förenkla initialisering av M-V-C-komponenterna (det som nu görs i main)
