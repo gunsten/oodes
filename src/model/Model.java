@@ -17,7 +17,7 @@ public class Model implements IModel, ReadableModel<Car> {
         this.max_cars = max_cars;
     }
 
-    public Model createDefaultModel(int max_cars, double width) {
+    public static Model createDefaultModel(int max_cars, double width) {
         Model def_model = new Model(new ArrayList<Car>(), max_cars, width);
         def_model.addVolvo240();
         def_model.addSaab95();
