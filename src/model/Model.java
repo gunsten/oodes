@@ -3,6 +3,8 @@ package model;
 import java.util.List;
 
 public class Model implements IModel, ReadableModel<Car> {
+    private static final double START_X = 0, START_W = 100, START_H = 60;
+    private static final double INIT_DIR = 0;
     private final List<Car> cars;
     private final double width;
     public Model(List<Car> cars, double width) {
@@ -82,5 +84,29 @@ public class Model implements IModel, ReadableModel<Car> {
     @Override
     public List<Car> get() {
         return cars;
+    }
+
+    double getInitDirection() {
+        return INIT_DIR;
+    }
+
+    double getInitX() {
+        return START_X;
+    }
+
+    double getInitY() {
+        double y = 0;
+        for(Car car : cars) {
+            y += car.getHeight();
+        }
+        return y;
+    }
+
+    double getInitWidth() {
+        return START_W;
+    }
+
+    double getInitHeight() {
+        return START_H;
     }
 }

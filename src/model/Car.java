@@ -243,4 +243,12 @@ public abstract class Car implements Movable {
     public boolean isLoaded() {
         return container != null;
     }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
 }
