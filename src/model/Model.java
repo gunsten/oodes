@@ -125,6 +125,12 @@ public class Model implements IModel, ReadableModel<Car> {
     }
 
     @Override
+    public void removeCar() {
+        if (cars.size() != 0)
+            cars.remove(cars.size()-1);
+    }
+
+    @Override
     public List<Car> get() {
         return cars;
     }

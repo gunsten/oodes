@@ -14,4 +14,5 @@ public interface IModel {
     void addVolvo240();
     void addScania();
     void addCar();
+    void removeCar();
 }
