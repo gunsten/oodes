@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * A car of the model.Volvo240 model
@@ -15,8 +16,8 @@ public class Volvo240 extends PrivateCar{
     /**
      * Creates a model.Volvo240 object
      */
-    public Volvo240(){
-        super(4, 100, Color.black, "model.Volvo240");
+    public Volvo240(Point2D.Double position, double direction, double width, double height){
+        super(4, 100, Color.black, "Volvo240", position, direction, width, height);
     }
 
     /**

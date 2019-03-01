@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 
 /**
  * model.Scania, a truck with a dumper
@@ -15,8 +16,8 @@ public class Scania extends Truck{
     /**
      * Creates a model.Scania object
      */
-    public Scania() {
-        super(2, 100, Color.yellow, "model.Scania");
+    public Scania(Point2D.Double position, double direction, double width, double height) {
+        super(2, 100, Color.yellow, "Scania", position, direction, width, height);
     }
 
     /**

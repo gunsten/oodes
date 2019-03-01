@@ -6,7 +6,7 @@ import java.awt.geom.Point2D;
 /**
  * Super class of cars
  */
-public abstract class Car implements Movable{
+public abstract class Car implements Movable {
     /**
      * Defines turning amount
      */
@@ -23,6 +23,7 @@ public abstract class Car implements Movable{
 
     private Point2D.Double position;
     private double direction;
+    private final double width, height;
 
     /**
      * Creates a car object
@@ -32,14 +33,16 @@ public abstract class Car implements Movable{
      * @param color
      * @param modelName
      */
-    public Car(int nrDoors, double enginePower, Color color, String modelName) {
+    public Car(int nrDoors, double enginePower, Color color, String modelName, Point2D.Double position, double direction, double width, double height) {
         this.nrDoors = nrDoors;
         this.enginePower = enginePower;
         this.currentSpeed = 0;
         this.color = color;
         this.modelName = modelName;
-        position = new Point2D.Double(0,0);
-        direction = 0;
+        this.position = new Point2D.Double(position.x,position.y);
+        this.direction = direction;
+        this.width = width;
+        this.height = height;
         stopEngine();
     }
 

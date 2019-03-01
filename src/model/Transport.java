@@ -1,6 +1,7 @@
 package model;
 
 import java.awt.*;
+import java.awt.geom.Point2D;
 import java.util.Stack;
 
 /**
@@ -18,8 +19,8 @@ public class Transport extends Truck implements Loadable<PrivateCar> {
      * Creates a model.Transport object
      * @param max maximum carrying capacity, number of cars
      */
-    public Transport(int max) {
-        super(2, 100, Color.red, "model.Transport");
+    public Transport(Point2D.Double position, double direction, double width, double height, int max) {
+        super(2, 100, Color.red, "Transport", position, direction, width, height);
         if(max <= 0)
             throw new IllegalArgumentException("model.Car capacity of model.Transport must be positive");
         this.max = max;
