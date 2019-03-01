@@ -12,15 +12,10 @@ import javax.swing.*;
 // This panel represent the animated part of the view with the car images.
 
 public class DrawPanel extends JPanel{
-
-    // Images associated with each car modelled
-    Map<? extends Locateable, BufferedImage> carImages;
-
     ReadableModel<? extends Locateable> model;
 
     // Initializes the panel and reads the images
-    public DrawPanel(ReadableModel<? extends Locateable> model, Map<? extends Locateable, BufferedImage> carImages, int x, int y) {
-        this.carImages = carImages;
+    public DrawPanel(ReadableModel<? extends Locateable> model, int x, int y) {
         this.model = model;
 
         this.setDoubleBuffered(true);
@@ -33,7 +28,8 @@ public class DrawPanel extends JPanel{
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         for (Locateable car : model.get()) {
-            g.drawImage(carImages.get(car), (int) car.getPosition().x, (int) car.getPosition().y, null);
+            Image img = CarRepresentations.getCarRepresentations().getRepresentation(car.getClass());
+            g.drawImage(img, (int) car.getPosition().x, (int) car.getPosition().y, null);
         }
     }
 }
