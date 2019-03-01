@@ -1,12 +1,9 @@
 package view;
 
-import model.Car;
 import model.Locateable;
 import model.ReadableModel;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.util.Map;
 import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
