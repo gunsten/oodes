@@ -27,16 +27,9 @@ public class CarRepresentations {
         else {
             carRepresentations = new CarRepresentations();
             BufferedImage volvoImage = null, saabImage = null, scaniaImage = null;
-            // Instance of this class
-            //controller.ICarController cc = new controller.CarController();
 
             try {
-                // You can remove the "pics" part if running outside of IntelliJ and
-                // everything is in the same main folder.
-                // volvoImage = ImageIO.read(new File("model.Volvo240.jpg"));
-
-                // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
-                // if you are starting in IntelliJ.
+                //TODO Better way to reference resources
                 volvoImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("../Volvo240.jpg"));
                 saabImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("../Saab95.jpg"));
                 scaniaImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("../Scania.jpg"));
