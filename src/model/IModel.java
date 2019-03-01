@@ -10,4 +10,8 @@ public interface IModel {
     void lowerBeds();
     void turbosOn();
     void turbosOff();
+    void addSaab95();
+    void addVolvo240();
+    void addScania();
+    void addCar();
 }

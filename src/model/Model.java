@@ -1,16 +1,30 @@
 package model;
 
+import java.awt.geom.Point2D;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class Model implements IModel, ReadableModel<Car> {
     private static final double START_X = 0, START_W = 100, START_H = 60;
     private static final double INIT_DIR = 0;
     private final List<Car> cars;
     private final double width;
-    public Model(List<Car> cars, double width) {
+    private final int max_cars;
+    private Model(List<Car> cars, int max_cars, double width) {
         this.cars = cars;
         this.width = width;
+        this.max_cars = max_cars;
     }
+
+    public Model createDefaultModel(int max_cars, double width) {
+        Model def_model = new Model(new ArrayList<Car>(), max_cars, width);
+        def_model.addVolvo240();
+        def_model.addSaab95();
+        def_model.addScania();
+        return def_model;
+    }
+    
     @Override
     public void update() {
         for (Car car : cars) {
@@ -82,31 +96,56 @@ public class Model implements IModel, ReadableModel<Car> {
     }
 
     @Override
+    public void addSaab95() {
+        if (cars.size() < max_cars)
+            cars.add(CarFactory.createSaab95(getInitPos(), getInitDirection(), getInitWidth(), getInitHeight()));
+    }
+
+    @Override
+    public void addVolvo240() {
+        if (cars.size() < max_cars)
+            cars.add(CarFactory.createVolvo240(getInitPos(), getInitDirection(), getInitWidth(), getInitHeight()));
+    }
+
+    @Override
+    public void addScania() {
+        if (cars.size() < max_cars)
+            cars.add(CarFactory.createScania(getInitPos(), getInitDirection(), getInitWidth(), getInitHeight()));
+    }
+
+    @Override
+    public void addCar() {
+        int rand = (new Random(System.currentTimeMillis())).nextInt(3);
+
+        switch (rand) {
+            case 0: addSaab95(); break;
+            case 1: addVolvo240(); break;
+            case 2: addScania(); break;
+        }
+    }
+
+    @Override
     public List<Car> get() {
         return cars;
     }
 
-    double getInitDirection() {
+    private double getInitDirection() {
         return INIT_DIR;
     }
 
-    double getInitX() {
-        return START_X;
-    }
-
-    double getInitY() {
+    private Point2D.Double getInitPos() {
         double y = 0;
         for(Car car : cars) {
             y += car.getHeight();
         }
-        return y;
+        return new Point2D.Double(START_X, y);
     }
 
-    double getInitWidth() {
+    private double getInitWidth() {
         return START_W;
     }
 
-    double getInitHeight() {
+    private double getInitHeight() {
         return START_H;
     }
 }
