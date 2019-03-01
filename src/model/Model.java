@@ -38,7 +38,16 @@ public class Model implements IModel, ReadableModel<Car> {
     @Override
     public void gas(int amount) {
         for (Car car : cars) {
-            car.gas(amount/100d);
+            //TODO Reconsider car state design and the use of exceptions
+            try {
+                car.gas(amount / 100d);
+            } catch (PlatformException e) {
+                if (car instanceof Truck &&
+                        ((Truck) car).getPlatformClosedAngle() == ((Truck) car).getPlatformClosedAngle())
+                    System.out.println(e.getMessage());
+                else
+                    throw e;
+            }
         }
     }
 
@@ -66,8 +75,17 @@ public class Model implements IModel, ReadableModel<Car> {
     @Override
     public void liftBeds() {
         for (Car car : cars) {
-            if (car instanceof Truck)
-                ((Truck) car).raisePlatform();
+            if (car instanceof Truck) {
+                //TODO Reconsider car state design and the use of exceptions
+                try {
+                    ((Truck) car).raisePlatform();
+                } catch (PlatformException e) {
+                    if (car.getCurrentSpeed() != 0)
+                        System.out.println(e.getMessage());
+                    else
+                        throw e;
+                }
+            }
         }
     }
 
