@@ -37,9 +37,9 @@ public class CarRepresentations {
 
                 // Rememember to rightclick src New -> Package -> name: pics -> MOVE *.jpg to pics.
                 // if you are starting in IntelliJ.
-                volvoImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("Volvo240.jpg"));
-                saabImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("Saab95.jpg"));
-                scaniaImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("Scania.jpg"));
+                volvoImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("../Volvo240.jpg"));
+                saabImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("../Saab95.jpg"));
+                scaniaImage = ImageIO.read(CarRepresentations.class.getResourceAsStream("../Scania.jpg"));
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
