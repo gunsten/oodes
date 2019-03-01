@@ -26,4 +26,12 @@ public class CarFactory {
     public static Scania createScania(Model model) {
         return createScania(new Point2D.Double(model.getInitX(), model.getInitY()), model.getInitDirection(), model.getInitWidth(), model.getInitHeight());
     }
+
+    public static Transport createTransport(Point2D.Double position, double direction, double width, double height, int max_capacity) {
+        return new Transport(position, direction, width, height, max_capacity);
+    }
+
+    public static Transport createTransport(Model model, int max_capacity) {
+        return createTransport(new Point2D.Double(model.getInitX(), model.getInitY()), model.getInitDirection(), model.getInitWidth(), model.getInitHeight(), max_capacity);
+    }
 }
