@@ -29,7 +29,7 @@ public class Model implements IModel, ReadableModel<Car> {
     public void update() {
         for (Car car : cars) {
             car.move();
-            if(car.getPosition().x < 0 || car.getPosition().x > width - 100) {
+            if(car.getPosition().x < 0 || car.getPosition().x > width - car.getWidth()) {
                 car.uTurn();
             }
         }
