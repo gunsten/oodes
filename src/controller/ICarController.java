@@ -9,4 +9,6 @@ public interface ICarController {
     void lowerBeds();
     void turbos(boolean on);
     void startSimulation();
+    void addCar();
+    void removeCar();
 }

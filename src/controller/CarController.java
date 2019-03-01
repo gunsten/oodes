@@ -61,6 +61,16 @@ public class CarController implements ICarController{
         timer.start();
     }
 
+    @Override
+    public void addCar() {
+        model.addCar();
+    }
+
+    @Override
+    public void removeCar() {
+        model.removeCar();
+    }
+
     /* Each step the TimerListener moves all the cars in the list and tells the
     * view to update its images. Change this method to your needs.
     * */
