@@ -1,14 +1,16 @@
 import model.*;
 import org.junit.jupiter.api.Test;
 
+import java.awt.geom.Point2D;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class TestTransport {
     @Test
     public void testLoad() {
-        Volvo240 volvo = new Volvo240();
-        Transport tp = new Transport(5);
+        Volvo240 volvo = CarFactory.createVolvo240(new Point2D.Double(0,0),0,0,0);
+        Transport tp = CarFactory.createTransport(new Point2D.Double(0,0),0,0,0,5);
 
         boolean except1 = false;
 
@@ -40,7 +42,7 @@ public class TestTransport {
 
         //Test that loaded car cannot be loaded again
         boolean except11 = false;
-        Transport tp2 = new Transport(2);
+        Transport tp2 = CarFactory.createTransport(new Point2D.Double(0,0),0,0,0,5);
         tp2.lowerPlatform();
         try {
             tp2.loadCar(volvo);
@@ -88,7 +90,9 @@ public class TestTransport {
         assertTrue(Locateable.distance(tp, volvo) == 1d);
         assertEquals(false, volvo.isLoaded());
 
-        Saab95 saab = new Saab95();
+        //Test load range
+
+        Saab95 saab = CarFactory.createSaab95(new Point2D.Double(0,0),0,0,0);
 
         boolean except4 = false;
 
@@ -104,10 +108,10 @@ public class TestTransport {
     }
 
     @Test
-    public void testConstructor() {
+    public void testFactoryMethod() {
         boolean except = false;
         try {
-            new Transport(-1);
+            CarFactory.createTransport(new Point2D.Double(0,0),0,0,0,-1);
         } catch (IllegalArgumentException e) {
             except = true;
         }
@@ -115,7 +119,7 @@ public class TestTransport {
 
         except = false;
         try {
-            new Transport(0);
+            CarFactory.createTransport(new Point2D.Double(0,0),0,0,0,0);
         } catch (IllegalArgumentException e) {
             except = true;
         }
@@ -124,7 +128,7 @@ public class TestTransport {
 
     @Test
     public void testEmpty() {
-        Transport tp = new Transport(1);
+        Transport tp = CarFactory.createTransport(new Point2D.Double(0,0),0,0,0,1);
         tp.lowerPlatform();
 
         boolean except = false;
@@ -141,13 +145,13 @@ public class TestTransport {
 
     @Test
     public void testFull() {
-        Transport tp = new Transport(1);
+        Transport tp = CarFactory.createTransport(new Point2D.Double(0,0),0,0,0,1);
         tp.lowerPlatform();
-        tp.loadCar(new Volvo240());
+        tp.loadCar(CarFactory.createVolvo240(new Point2D.Double(0,0),0,0,0));
         boolean except = false;
 
         try {
-            tp.loadCar(new Saab95());
+            tp.loadCar(CarFactory.createSaab95(new Point2D.Double(0,0),0,0,0));
         } catch (LoadException e) {
             if (e.getMessage().contains("full"))
                 except = true;

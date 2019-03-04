@@ -1,7 +1,10 @@
+import model.CarFactory;
 import model.LoadException;
 import model.Volvo240;
 import model.Workshop;
 import org.junit.jupiter.api.Test;
+
+import java.awt.geom.Point2D;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -10,8 +13,8 @@ public class TestWorkshop {
     public void testWorkshop() {
         Workshop<Volvo240> wsvolvo = new Workshop<>();
 
-        Volvo240 v1 = new Volvo240();
-        Volvo240 v2 = new Volvo240();
+        Volvo240 v1 = CarFactory.createVolvo240(new Point2D.Double(0,0),0,0,0);
+        Volvo240 v2 = CarFactory.createVolvo240(new Point2D.Double(0,0),0,0,0);
 
         wsvolvo.loadCar(v1);
         wsvolvo.loadCar(v2);

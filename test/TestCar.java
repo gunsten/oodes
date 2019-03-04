@@ -1,4 +1,5 @@
 import model.Car;
+import model.CarFactory;
 import model.Saab95;
 import model.Volvo240;
 import org.junit.jupiter.api.Test;
@@ -13,16 +14,16 @@ public class TestCar {
 
     @Test
     public void testInit() {
-        Car volvo = new Volvo240();
-        Car saab = new Saab95();
+        Car volvo = CarFactory.createVolvo240(new Point2D.Double(0,0), 0,1,1);
+        Car saab = CarFactory.createSaab95(new Point2D.Double(0,0), 0,1,1);
         assertEquals(Color.black, volvo.getColor());
         assertEquals(Color.red, saab.getColor());
         assertEquals(4, volvo.getNrDoors());
         assertEquals(2, saab.getNrDoors());
         assertEquals(100, volvo.getEnginePower());
         assertEquals(125, saab.getEnginePower());
-        assertEquals("model.Volvo240", volvo.modelName);
-        assertEquals("model.Saab95", saab.modelName);
+        assertEquals("Volvo240", volvo.modelName);
+        assertEquals("Saab95", saab.modelName);
         assertEquals(0, volvo.getCurrentSpeed());
         assertEquals(0, saab.getCurrentSpeed());
         assertEquals(0, volvo.getDirection());
@@ -33,14 +34,14 @@ public class TestCar {
 
     @Test
     public void testSetters() {
-        Car volvo = new Volvo240();
+        Car volvo = CarFactory.createVolvo240(new Point2D.Double(0,0), 0,1,1);
         volvo.setColor(Color.white);
         assertEquals(Color.white, volvo.getColor());
     }
 
     @Test
     public void testMoveStationary() {
-        Car volvo = new Volvo240();
+        Car volvo = CarFactory.createVolvo240(new Point2D.Double(0,0), 0,1,1);
 
         //Zero speed
         Point2D.Double initial = volvo.getPosition();
@@ -50,7 +51,7 @@ public class TestCar {
 
     @Test
     public void testMoveHorizontal() {
-        Saab95 saab = new Saab95();
+        Saab95 saab = CarFactory.createSaab95(new Point2D.Double(0,0), 0,1,1);
 
         Point2D.Double initial = saab.getPosition();
         saab.startEngine();
@@ -67,7 +68,7 @@ public class TestCar {
 
     @Test
     public void testMove() {
-        Volvo240 volvo = new Volvo240();
+        Volvo240 volvo = CarFactory.createVolvo240(new Point2D.Double(0,0), 0,1,1);
 
         Point2D.Double initial = volvo.getPosition();
 
@@ -91,7 +92,7 @@ public class TestCar {
 
     @Test
     public void testTurnRight() {
-        Car saab = new Saab95();
+        Car saab = CarFactory.createSaab95(new Point2D.Double(0,0), 0,1,1);
         for(int i=0;i<100;i++) {
             saab.turnRight();
             assertTrue(saab.getDirection() >= 0 && saab.getDirection() <= 2*Math.PI);
@@ -103,12 +104,12 @@ public class TestCar {
         boolean except1 = false;
         boolean except2 = false;
         try {
-            new Saab95().gas(10534645);
+            (CarFactory.createSaab95(new Point2D.Double(0,0), 0,1,1)).gas(10534645);
         } catch (IllegalArgumentException e) {
             except1 = true;
         }
         try {
-            new Volvo240().brake(-20);
+            (CarFactory.createVolvo240(new Point2D.Double(0,0), 0,1,1)).brake(-20);
         } catch (IllegalArgumentException e) {
             except2 = true;
         }
