@@ -20,7 +20,9 @@ public class Main {
         CarController cc = new CarController(drawPanel, model);
 
         // Start a new view
-        new CarView("CarSim 1.0", cc, drawPanel);
+        CarView view = new CarView("CarSim 1.0", cc, drawPanel);
+
+        model.addObserver(view);
 
 
         // Start the timer
