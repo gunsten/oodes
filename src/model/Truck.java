@@ -76,7 +76,6 @@ public abstract class Truck extends Car {
      * @throws IllegalArgumentException if the argument is outside of the allowed range
      */
     public void gas(double amount) {
-
         super.gas(amount*state.gas());
     }
 }
