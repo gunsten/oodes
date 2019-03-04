@@ -1,18 +1,18 @@
 package view;
 
 import model.Locateable;
-import model.ReadableModel;
+import model.ObservableModel;
 
 import java.awt.*;
 import javax.swing.*;
 
 // This panel represent the animated part of the view with the car images.
 
-public class DrawPanel extends JPanel{
-    ReadableModel<? extends Locateable> model;
+public class DrawPanel extends JPanel {
+    ObservableModel<? extends Locateable> model;
 
     // Initializes the panel and reads the images
-    public DrawPanel(ReadableModel<? extends Locateable> model, int x, int y) {
+    public DrawPanel(ObservableModel<? extends Locateable> model, int x, int y) {
         this.model = model;
 
         this.setDoubleBuffered(true);
@@ -29,4 +29,5 @@ public class DrawPanel extends JPanel{
             g.drawImage(img, (int) car.getPosition().x, (int) car.getPosition().y, null);
         }
     }
+
 }

@@ -77,7 +77,6 @@ public class CarController implements ICarController{
     private class TimerListener implements ActionListener {
         public void actionPerformed(ActionEvent e) {
             model.update();
-            updateableView.repaint();
         }
     }
 

@@ -1,20 +1,24 @@
 package model;
 
+import view.ModelObserver;
+
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Model implements IModel, ReadableModel<Car> {
+public class Model implements IModel, ObservableModel<Car> {
     private static final double START_X = 0, START_W = 100, START_H = 60;
     private static final double INIT_DIR = 0;
     private final List<Car> cars;
     private final double width;
     private final int max_cars;
+    private final List<ModelObserver> observers;
     private Model(List<Car> cars, int max_cars, double width) {
         this.cars = cars;
         this.width = width;
         this.max_cars = max_cars;
+        observers = new ArrayList<>();
     }
 
     public static Model createDefaultModel(int max_cars, double width) {
@@ -32,6 +36,13 @@ public class Model implements IModel, ReadableModel<Car> {
             if(car.getPosition().x < 0 || car.getPosition().x > width - car.getWidth()) {
                 car.uTurn();
             }
+        }
+        notifyObservers();
+    }
+
+    private void notifyObservers() {
+        for(ModelObserver observer : observers) {
+            observer.updateModelView();
         }
     }
 
@@ -117,18 +128,21 @@ public class Model implements IModel, ReadableModel<Car> {
     public void addSaab95() {
         if (cars.size() < max_cars)
             cars.add(CarFactory.createSaab95(getInitPos(), getInitDirection(), getInitWidth(), getInitHeight()));
+        notifyObservers();
     }
 
     @Override
     public void addVolvo240() {
         if (cars.size() < max_cars)
             cars.add(CarFactory.createVolvo240(getInitPos(), getInitDirection(), getInitWidth(), getInitHeight()));
+        notifyObservers();
     }
 
     @Override
     public void addScania() {
         if (cars.size() < max_cars)
             cars.add(CarFactory.createScania(getInitPos(), getInitDirection(), getInitWidth(), getInitHeight()));
+        notifyObservers();
     }
 
     @Override
@@ -140,17 +154,24 @@ public class Model implements IModel, ReadableModel<Car> {
             case 1: addVolvo240(); break;
             case 2: addScania(); break;
         }
+        notifyObservers();
     }
 
     @Override
     public void removeCar() {
         if (cars.size() != 0)
             cars.remove(cars.size()-1);
+        notifyObservers();
     }
 
     @Override
     public List<Car> get() {
         return cars;
+    }
+
+    @Override
+    public void addObserver(ModelObserver obs) {
+        observers.add(obs);
     }
 
     private double getInitDirection() {

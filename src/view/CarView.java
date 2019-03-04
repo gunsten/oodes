@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
  * each of it's components.
  **/
 
-public class CarView extends JFrame{
+public class CarView extends JFrame implements ModelObserver{
     public static final int X = 800;
     public static final int Y = 1000;
 
@@ -191,5 +191,10 @@ public class CarView extends JFrame{
         this.setVisible(true);
         // Make sure the frame exits when "x" is pressed
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    @Override
+    public void updateModelView() {
+        drawPanel.repaint();
     }
 }
